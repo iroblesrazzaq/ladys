@@ -98,5 +98,8 @@ run through the ordinary `Experiment` API or `ladys run` command.
 
 - [Lorenz tutorial](tutorials/lorenz.ipynb): configure an experiment, train a model,
   and plot learning curves and reconstructed activity.
+- [FALCON inventory](tutorials/falcon_inventory.ipynb): measure the public FALCON
+  NWB download (channels, trials, length, sizes, rasters). Data layout and
+  `dandi download` commands are in [`data/falcon/README.md`](data/falcon/README.md).
 - [Documentation](https://zkunkworks.com/ladys/): model reference, configuration,
   and hyperparameter tuning.
