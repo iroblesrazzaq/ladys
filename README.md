@@ -101,5 +101,10 @@ run through the ordinary `Experiment` API or `ladys run` command.
 - [FALCON inventory](tutorials/falcon_inventory.ipynb): measure the public FALCON
   NWB download (channels, trials, length, sizes, rasters). Data layout and
   `dandi download` commands are in [`data/falcon/README.md`](data/falcon/README.md).
+- [IBL inventory](tutorials/ibl_inventory.ipynb) and
+  [Allen inventory](tutorials/allen_inventory.ipynb): count neurons, trials, length
+  and sizes for the IBL Brainwide Map and Allen Visual Coding Neuropixels. They read
+  extracted tables; see [`data/ibl/README.md`](data/ibl/README.md) and
+  [`data/allen/README.md`](data/allen/README.md).
 - [Documentation](https://zkunkworks.com/ladys/): model reference, configuration,
   and hyperparameter tuning.

@@ -20,3 +20,6 @@ runs/
 *.mat
 *.bin
 .DS_Store
+# Extracted IBL / Allen inventory tables (see data/ibl/README.md, data/allen/README.md).
+/data/ibl/tables
+/data/allen/tables
