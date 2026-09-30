@@ -12,6 +12,7 @@ python data/ibl/ibl_download.py --cache /big/disk/ibl --units all   # keep-set, 
 python data/ibl/ibl_extract.py --cache /big/disk/ibl --out data/ibl/tables
 python data/ibl/ibl_size_scan.py        # server-side sizes, no download
 mv ibl_bwm_sizes.csv data/ibl/tables/server_sizes.csv
+python data/ibl/ibl_coords.py --tables data/ibl/tables   # no bulk download, ~3 min
 ```
 
 - `ibl_download.py`: default-revision `alf/` files (sorted spikes, unit QC, trials,
@@ -20,6 +21,8 @@ mv ibl_bwm_sizes.csv data/ibl/tables/server_sizes.csv
 - `ibl_extract.py`: writes `sessions`, `probes`, `units`, `trials` parquet tables and
   `raster.npz` (30 s of spikes from the median-units session).
 - `ibl_size_scan.py`: sizes of the whole public release per session.
+- `ibl_coords.py`: ML / AP / DV (µm from bregma) of every unit, from three small alf files
+  per probe on the public server. Checks the atlas IDs against `units.parquet`.
 
 The tables look like:
 
@@ -30,6 +33,7 @@ data/ibl/tables/units.parquet
 data/ibl/tables/trials.parquet
 data/ibl/tables/raster.npz
 data/ibl/tables/server_sizes.csv
+data/ibl/tables/unit_coords.parquet
 ```
 
 If they already live somewhere else:

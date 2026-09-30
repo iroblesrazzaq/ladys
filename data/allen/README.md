@@ -13,6 +13,7 @@ aws s3 sync --no-sign-request --exclude "*_lfp.nwb" \
 cd /big/disk/allen
 python /path/to/ladys/data/allen/allen_extract.py --data data --out tables
 python /path/to/ladys/data/allen/allen_draft_counts.py
+python /path/to/ladys/data/allen/allen_coords.py --tables tables   # no NWBs needed
 ```
 
 - `allen_extract.py`: writes `sessions`, `units` (noise units included) and `stimuli`
@@ -20,6 +21,9 @@ python /path/to/ladys/data/allen/allen_draft_counts.py
   Waveforms and spike amplitudes are never loaded.
 - `allen_draft_counts.py`: per-unit flash and drifting-grating spike counts for the
   top-4 sessions of each type, used to guess the draft's Table 8 sessions.
+- `allen_coords.py`: CCF coordinates (µm) of each unit's peak channel, from the public
+  `channels.csv`, so it runs anywhere with `units.parquet`. 6 BO sessions have no
+  registered probes; 34,968 of 41,552 QC units get coordinates.
 
 `bucket_files.csv` (the S3 listing: key, bytes, session, kind) and `nwb_storage.csv`
 (per-session bytes by NWB dataset) were written with one-off commands and have no
@@ -31,6 +35,8 @@ data/allen/tables/units.parquet
 data/allen/tables/stimuli.parquet
 data/allen/tables/draft_window_counts.parquet
 data/allen/tables/raster.npz
+data/allen/tables/channels.csv
+data/allen/tables/unit_coords.parquet
 data/allen/tables/bucket_files.csv
 data/allen/tables/nwb_storage.csv
 data/allen/tables/stim_samples/

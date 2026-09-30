@@ -34,7 +34,7 @@ def text(a):
 
 
 def passes_qc(u):
-    return ((u.quality == 'good') & (u.isi_violations < QC['isi_violations'])
+    return ((u.quality != 'noise') & (u.isi_violations < QC['isi_violations'])
             & (u.amplitude_cutoff < QC['amplitude_cutoff']) & (u.presence_ratio > QC['presence_ratio']))
 
 
@@ -93,8 +93,7 @@ def session_tables(path, meta):
     session = {
         'session_id': sid, 'session_type': m.session_type, 'specimen_id': int(m.specimen_id),
         'sex': m.sex, 'age_days': m.age_in_days, 'genotype': m.genotype,
-        'probes': u.probe.nunique(), 'units': len(u), 'good_units': int((u.quality == 'good').sum()),
-        'qc_units': int(u.qc.sum()), 'spikes': int(n.sum()),
+        'probes': u.probe.nunique(), 'units': len(u), 'qc_units': int(u.qc.sum()), 'spikes': int(n.sum()),
         'recording_s': float(np.nanmax(last) - np.nanmin(first)),
         'stimulus_s': float(stim.stop_time.max() - stim.start_time.min()),
         'invalid_intervals': invalid, 'nwb_bytes': path.stat().st_size,
