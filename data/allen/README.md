@@ -33,6 +33,19 @@ data/allen/tables/draft_window_counts.parquet
 data/allen/tables/raster.npz
 data/allen/tables/bucket_files.csv
 data/allen/tables/nwb_storage.csv
+data/allen/tables/stim_samples/
+```
+
+`stim_samples/` holds the real stimuli shown in the notebook's stimulus gallery: 4 of the 118
+natural-scene TIFFs and 6 frames of natural movie one, from the bucket's stimulus templates.
+The movie `.h5` template is really a Python 2 `.npy` (uint8, 900 × 304 × 608, 96-byte header):
+
+```bash
+cd /big/disk/allen/data && mkdir -p ../tables/stim_samples
+cp natural_scene_templates/natural_scene_{5,17,42,88}.tiff ../tables/stim_samples/
+python -c "import numpy as np; m = np.memmap('natural_movie_templates/natural_movie_1.h5', np.uint8, 'r', \
+    offset=96, shape=(900, 304, 608)); np.save('../tables/stim_samples/natural_movie_one_frames.npy', \
+    np.array(m[::150]))"
 ```
 
 If they already live somewhere else:
